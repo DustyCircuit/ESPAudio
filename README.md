@@ -52,7 +52,6 @@ Install the library and the SPI driver library in your ~/Arduino/libraries
 mkdir -p ~/Arduino/libraries
 cd ~/Arduino/libraries
 git clone https://github.com/earlephilhower/ESP8266Audio
-git clone https://github.com/Gianbacchio/ESP8266_Spiram
 ```
 
 When in the IDE please select the following options on the ESP8266:
@@ -249,12 +248,6 @@ ESP Pin -------|____|--------+
 Ground  ---------------------+
 ```
 For ESP8266 with red LED (~1.9Vf drop) you need minimum 150Ohm resistor (12mA max per pin), and output pin is fixed (GPIO3/RX0).On ESP32 it is confgurable with `AudioOutputSPDIF(gpio_num)`.
-
-## Using external SPI RAM to increase buffer
-A class allows you to use a 23lc1024 SPI RAM from Microchip as input buffer. This chip connects to ESP8266 HSPI port and uses an [external SPI RAM library](https://github.com/Gianbacchio/ESP8266_Spiram).
-You need to choose another pin than GPIO15 for Cs as this pin is already used by the I2S port. Here is an example with the Cs pin plugged to GPIO00 on NodeMCU board.
-
-![Example of SPIRAM Schematic](examples/StreamMP3FromHTTP_SPIRAM/Schema_Spiram.png)
 
 ## Notes for using SD cards and ESP8266Audio on Wemos shields
 I've been told the Wemos SD card shield uses GPIO15 as the SD chip select.  This needs to be changed because GPIO15 == I2SBCLK, and is driven even if you're using the NoDAC option.  Once you move the CS to another pin and update your program it should work fine.
